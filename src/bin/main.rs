@@ -45,6 +45,6 @@ fn main() -> ! {
         let data = if button.is_low() { "1\r\n" } else { "0\r\n" };
         uart.write(data.as_bytes()).unwrap();
         uart.flush().unwrap();
-        delay.delay_ms(5_u32);
+        delay.delay_ms(2_u32);
     }
 }

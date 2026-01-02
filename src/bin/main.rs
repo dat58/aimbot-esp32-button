@@ -6,7 +6,6 @@
     holding buffers for the duration of a data transfer."
 )]
 
-use embedded_hal::delay::DelayNs;
 use esp_hal::{
     clock::CpuClock,
     delay::Delay,
@@ -34,7 +33,7 @@ fn main() -> ! {
 
     esp_alloc::heap_allocator!(size: 64 * 1024);
 
-    let mut delay = Delay::new();
+    let delay = Delay::new();
 
     let mut uart = Uart::new(peripherals.UART0, Config::default()).unwrap();
 
@@ -61,6 +60,6 @@ fn main() -> ! {
         };
         uart.write(data.as_bytes()).unwrap();
         uart.flush().unwrap();
-        delay.delay_ms(2_u32);
+        delay.delay_micros(300_u32);
     }
 }
